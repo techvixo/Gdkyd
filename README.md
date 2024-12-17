@@ -1,3 +1,3 @@
-# Wintech-backend
+# gdkyd-backend
 
-a copy of Wintech backend webstie from Fahad
+a copy of gdkyd backend webstie from Fahad
