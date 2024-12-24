@@ -30,5 +30,7 @@ router.use('/web-home', webHomeRouter)
 router.use('/message', messageRouter)
 router.use('/hero', heroRouter)
 router.use('/dashboard', dashbaordRouter)
+router.use('/honor', honorRouter)
+router.use('/video', videoRouter)
 
 module.exports = router
