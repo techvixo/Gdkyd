@@ -13,6 +13,8 @@ const webHomeRouter = require('../../modules/webHomeModule/webHome.routes')
 const messageRouter = require('../../modules/messageModule/message.routes')
 const heroRouter = require('../../modules/heroModule/hero.routes')
 const dashbaordRouter = require('../../modules/dashboard/dashboard.routes')
+const honorRouter = require('../../modules/honorModule/honor.routes')
+const videoRouter = require('../../modules/videoModule/video.routes')
 
 const router = express.Router()
 
