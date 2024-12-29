@@ -47,9 +47,9 @@ const getSpecificBanner = async (req, res) => {
   const { id } = req.params;
 
   const banner = await bannerServices.getSpecificBanner(id);
-  if (!banner) {
-    throw new CustomError.NotFoundError('Banner not found!');
-  }
+  // if (!banner) {
+  //   throw new CustomError.NotFoundError('Banner not found!');
+  // }
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

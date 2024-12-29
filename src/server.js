@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const config = require('./config')
 const app = require('./app')
-const port = 8001
+const port = 8002
 
 const dbConnection = async () => {
   mongoose.connect(config.database_url)
