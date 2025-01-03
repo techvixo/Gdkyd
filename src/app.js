@@ -31,7 +31,7 @@ const limiter = rateLimit({
 })
 
 app.use(morgan('dev'))
-app.use(limiter)
+// app.use(limiter)
 
 // application middleware
 app.use('/v1', Router)
