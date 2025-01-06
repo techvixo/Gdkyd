@@ -23,7 +23,18 @@ const createProduct = async (req, res) => {
       : req.body.configurations
 
   productData.configurations = configurations
+  productData.category = {
+    categoryId: productData.categoryId,
+    title_en: productData.category_title_en,
+    title_cn: productData.category_title_cn
+  }
 
+  productData.createdBy = {
+    adminId: productData.adminId,
+    name_en: productData.admin_name_en,
+    name_cn: productData.admin_name_cn,
+    email: productData.admin_email
+  }
   // Upload images if any
   const productImages = await fileUploader(
     req.files,
@@ -36,9 +47,11 @@ const createProduct = async (req, res) => {
   if (!product) {
     throw new CustomError.BadRequestError('Failed to create new product!')
   }
-
+// console.log(product)
   const category = await getSpecificCategory(product.category.categoryId)
-// console.log(category)
+  if(!category){
+    throw new CustomError.BadRequestError("No category found!")
+  }
   category.products.push(product._id)
   await category.save()
 
