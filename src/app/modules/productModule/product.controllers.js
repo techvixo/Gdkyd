@@ -5,6 +5,7 @@ const sendResponse = require('../../../shared/sendResponse')
 const fileUploader = require('../../../utils/fileUploader')
 const IdGenerator = require('../../../utils/idGenerator')
 const { getSpecificCategory } = require('../categoryModule/category.services')
+const Category = require('../categoryModule/category.model')
 
 // Controller for creating a new product
 const createProduct = async (req, res) => {
@@ -99,6 +100,16 @@ const getSpecificProduct = async (req, res) => {
 const updateSpecificProduct = async (req, res) => {
   const { id } = req.params
   const updateData = req.body
+
+  if(updateData.category){
+    const category = await Category.findOne({_id: updateData.category})
+    updateData.category = {
+      categoryId: updateData.category,
+      title_en: category.name_en,
+      title_cn: category.name_cn
+    }
+    console.log(updateData)
+  }
 
   const configurations =
     typeof req.body.configurations === 'string'
