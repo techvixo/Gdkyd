@@ -39,7 +39,7 @@ const createProduct = async (req, res) => {
   // Upload images if any
   const productImages = await fileUploader(
     req.files,
-    `product-image-${productData.title}`,
+    `product-image-${productData.title}-${IdGenerator.generateId()}`,
     'images'
   )
   productData.images = productImages
@@ -122,7 +122,7 @@ const updateSpecificProduct = async (req, res) => {
   if (req.files || req.files?.length > 0) {
     const productImages = await fileUploader(
       req.files,
-      `product-image-${updateData.title}`,
+      `product-image-${updateData.title}-${IdGenerator.generateId()}`,
       'images'
     )
     updateData.images = productImages
