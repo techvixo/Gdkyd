@@ -31,4 +31,6 @@ categoryRouter.delete(
   categoryControllers.deleteSpecificCategory
 )
 
+categoryRouter.get('/retrieve/for-sitemap', categoryControllers.getCategoriesForSitemap)
+
 module.exports = categoryRouter

@@ -34,4 +34,6 @@ productRouter.post(
   // retrive related product
   productRouter.post('/retrive/related-product', productControllers.getRelatedProduct)
 
+  productRouter.get('/retrieve/for-sitemap', productControllers.getProductsForSitemap)
+
 module.exports = productRouter

@@ -171,11 +171,37 @@ const getRelatedProduct = async(req, res) => {
   })
 }
 
+// controller for get products for sitemap
+const getProductsForSitemap = async (req, res) => {
+  const products = await productServices.getAllProducts()
+
+  let sitemapResponse = []
+  if(products.length > 0){
+    products.map(product => {
+      const payload = {
+        product: product.title_en,
+        product_id: product._id,
+        category: product.category.title_en,
+        category_id: product.category.categoryId,
+      }
+      sitemapResponse.push(payload)
+    })
+  }
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    status:'success',
+    message: 'Products retrieved successfully',
+    data: sitemapResponse
+  })
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
   getSpecificProduct,
   updateSpecificProduct,
   deleteSpecificProduct,
-  getRelatedProduct
+  getRelatedProduct,
+  getProductsForSitemap
 }

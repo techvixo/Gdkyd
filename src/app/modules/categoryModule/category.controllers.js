@@ -101,10 +101,36 @@ const deleteSpecificCategory = async (req, res) => {
   });
 };
 
+// retrive categories for sitemap
+const getCategoriesForSitemap = async (req, res) => {
+
+  const categories = await categoryServices.getAllCategory();
+
+  let sitemapResponse = [];
+
+  if(categories.length !== 0) {
+    categories.map(category => {
+      const payload = {
+        category: category.name_en,
+        category_id: category._id
+      }
+      sitemapResponse.push(payload);
+    })
+  }
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    status: 'success',
+    message: 'Categories retrive successful',
+    data: sitemapResponse,
+  });
+}
+
 module.exports = {
   createCategory,
   getAllCategories,
   getSpecificCategory,
   updateSpecificCategory,
   deleteSpecificCategory,
+  getCategoriesForSitemap
 };

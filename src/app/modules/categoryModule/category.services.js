@@ -27,6 +27,7 @@ const deleteSpecificCategory = async (id) => {
   return await Category.deleteOne({ _id: id });
 };
 
+
 module.exports = {
   createCategory,
   getAllCategory,
