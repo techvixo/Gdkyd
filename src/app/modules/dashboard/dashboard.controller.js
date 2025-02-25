@@ -2,18 +2,25 @@ const { StatusCodes } = require("http-status-codes")
 const sendResponse = require("../../../shared/sendResponse")
 const Blog = require("../blogModule/blog.model")
 const { getAllBlogs } = require("../blogModule/blog.services")
-const { getAllHeroes } = require("../heroModule/hero.services")
+// const { getAllHeroes } = require("../heroModule/hero.services")
 const { getAllPortfolios } = require("../portfolioModule/portfolio.services")
 const Product = require("../productModule/product.model")
 const { getAllProducts } = require("../productModule/product.services")
 const { getSpecificUser } = require("../userModule/user.services")
+const WebsiteStats = require("./websiteStats.model")
 
 
 const dashboard = async(req, res) => {
     const {id} = req.params
     const user = await getSpecificUser(id)
-    const getHeros = await getAllHeroes()
-    const totalVisitors = getHeros[0].visitCount || 0 + 1
+    // const getHeros = await getAllHeroes()
+    // const totalVisitors = getHeros[0].visitCount || 0 + 1
+
+    // Get overall visitor stats
+    const websiteStats = await WebsiteStats.findOne();
+
+    const totalVisitors = websiteStats ? websiteStats.totalVisitors : 0;
+    // const uniqueVisitors = websiteStats ? websiteStats.uniqueVisitors : 0;
 
     const products = await getAllProducts()
     const totalProduct = products.length
